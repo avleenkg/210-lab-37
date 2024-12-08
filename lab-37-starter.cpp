@@ -3,7 +3,6 @@
 using namespace std;
 
 
-int sum_ascii(string s);
 
 int main() {
 

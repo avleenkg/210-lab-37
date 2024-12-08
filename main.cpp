@@ -2,16 +2,23 @@
 using namespace std;
 
 
+int sum_ascii(string s);
+
 int main() {
-    char a = 'A';
-    cout << a << endl;
-    cout << (int) a << endl;
-    int b = 66;
-    cout << b << endl;
-    cout << (char) b << endl;
-    
+
+    //test 1
+    cout << "Testing ascii value for 536B9DFC93AF\n";
+    int testsum = sum_ascii("536B9DFC93AF");
+    cout << "The ascii value is " << testsum << endl;  
 
     return 0;
+}
+int sum_ascii(string s) {
+    int sum = 0;
+    for (char c : s) {
+        sum += (int) c;
+    }
+    return sum;
 }
 
 /* 
