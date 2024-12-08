@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int sum_
+int sum_ascii(string s);
 int main() {
     char a = 'A';
     cout << a << endl;
@@ -13,6 +13,13 @@ int main() {
     
 
     return 0;
+}
+int sum_ascii(string s) {
+    int sum = 0;
+    for (char c : s) {
+        sum += (int) c;
+    }
+    return sum;
 }
 
 /* 
