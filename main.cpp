@@ -1,15 +1,28 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 using namespace std;
 
 
 int sum_ascii(string s);
 
 int main() {
+    ifstream fin("lab-37-data.txt");
 
-    //test 1
-    cout << "Testing ascii value for 536B9DFC93AF\n";
-    int testsum = sum_ascii("536B9DFC93AF");
-    cout << "The ascii value is " << testsum << endl;  
+    if (fin.is_open()) {
+        string codes;
+        int grandtotal = 0;
+        while (fin >> codes) {
+            grandtotal += sum_ascii(codes);
+        }
+
+        cout << "The total ascii value of the whole file is: " << grandtotal << endl;
+
+        fin.close();
+    }
+    else {
+        cout << "Error. File not opened.\n";
+    }
 
     return 0;
 }
@@ -20,6 +33,7 @@ int sum_ascii(string s) {
     }
     return sum;
 }
+
 
 /* 
 These targets are present in the dataset and can be used for testing:
