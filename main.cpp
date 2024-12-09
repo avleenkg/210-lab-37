@@ -24,8 +24,11 @@ int main() {
             hash_table[index].push_back(codes);
         }
 
-        int choice, tableindex = 0, count = 0;
-        string search;
+        int choice, tableindex = 0, count = 0, oldindex = 0;
+        string search, newkey, removekey, oldkey, modkey;
+
+        auto it = list<string>::iterator(); //I had to google how to fix my error since I couldn't compile
+        //code which initialized new variables inside the switch statement, so I'm using this line
 
         do {
             cout << "------Data Records 3000------\n";
@@ -74,12 +77,46 @@ int main() {
                     break;
                 case 3:
                     //add a key
+                    cout << "Enter key to add: ";
+                    cin >> newkey;
+
+                    tableindex = gen_hash_index(newkey, TABLESIZE);
+                    hash_table[tableindex].push_back(newkey);
+                    cout << "New key added to index: " << tableindex << endl;
                     break;
                 case 4:
                     //remove a key
+                    cout << "Enter the key to remove: ";
+                    cin >> removekey;
+
+                    tableindex = gen_hash_index(removekey, TABLESIZE);
+                    it = find(hash_table[tableindex].begin(), hash_table[tableindex].end(), removekey);
+                    if (it != hash_table[tableindex].end()) {
+                        hash_table[tableindex].erase(it);
+                        cout << "Key removed from index: " << tableindex << endl;
+                    }
+                    else {
+                        cout << "Key not found.\n";
+                    }
                     break;
                 case 5:
                     //modify a key
+                    cout << "Enter key to modify: ";
+                    cin >> oldkey;
+                    cout << "Enter modified version/new key: ";
+                    cin >> modkey;
+
+                    oldindex = gen_hash_index(oldkey, TABLESIZE);
+                    it = find(hash_table[oldindex].begin(), hash_table[oldindex].end(), oldkey);
+                    if (it != hash_table[oldindex].end()){
+                        hash_table[oldindex].erase(it);
+                        tableindex = gen_hash_index(modkey, TABLESIZE);
+                        hash_table[tableindex].push_back(modkey);
+                        cout << "Key modified.\n";
+                    }
+                    else {
+                        cout << "Key not found.\n";
+                    }
                     break;
                 case 6:
                     //quit
