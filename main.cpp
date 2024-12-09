@@ -24,19 +24,62 @@ int main() {
             hash_table[index].push_back(codes);
         }
 
-        cout << "First 100 elements displayed:\n";
-        int count = 0;
-        for (const auto& indices : hash_table) {
-            if (count >= 100) {
-                break;
-            }
-            cout << "Table Index: " << indices.first << " | Codes: ";
-            for (const auto& codes : indices.second) {
-                cout << codes << ", ";
-            }
-            cout << endl;
-            count++;
-        }
+        int choice;
+        do {
+            cout << "------Data Records 3000------\n";
+            cout << "\t1. Print first 100 entries\n";
+            cout << "\t2. Search for a key\n";
+            cout << "\t3. Add a key\n";
+            cout << "\t4. Remove a key\n";
+            cout << "\t5. Modify a key\n";
+            cout << "\t6. Exit\n";
+
+            cout << "Enter a number: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    //print 100 entries
+                    cout << "First 100 elements displayed:\n";
+                    int count = 0;
+                    for (const auto& indices : hash_table) {
+                        if (count >= 100) {
+                            break;
+                        }
+                        cout << "Table Index: " << indices.first << " | Codes: ";
+                        for (const auto& codes : indices.second) {
+                            cout << codes << ", ";
+                        }
+                        cout << endl;
+                        count++;
+                    }
+                    break;
+                case 2:
+                    //search for a key
+                    string search;
+                    cout << "Enter the key to search: ";
+                    cin >> search;
+                    
+                    break;
+                case 3:
+                    //add a key
+                    break;
+                case 4:
+                    //remove a key
+                    break;
+                case 5:
+                    //modify a key
+                    break;
+                case 6:
+                    //quit
+                    cout << "Exiting...\n";
+                    return; 
+                default:
+                    cout << "Error. Not a valid entry.\n";
+                    break;
+           }
+
+        } while (choice != 6);
         
 
         fin.close();
