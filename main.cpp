@@ -24,7 +24,9 @@ int main() {
             hash_table[index].push_back(codes);
         }
 
-        int choice;
+        int choice, tableindex = 0, count = 0;
+        string search;
+
         do {
             cout << "------Data Records 3000------\n";
             cout << "\t1. Print first 100 entries\n";
@@ -41,7 +43,6 @@ int main() {
                 case 1:
                     //print 100 entries
                     cout << "First 100 elements displayed:\n";
-                    int count = 0;
                     for (const auto& indices : hash_table) {
                         if (count >= 100) {
                             break;
@@ -56,10 +57,20 @@ int main() {
                     break;
                 case 2:
                     //search for a key
-                    string search;
                     cout << "Enter the key to search: ";
                     cin >> search;
-                    
+                    tableindex = gen_hash_index(search, TABLESIZE);
+                    if (hash_table[tableindex].empty()) {
+                        cout << "Key not found.\n";
+                    }
+                    else {
+                        if (find(hash_table[tableindex].begin(), hash_table[tableindex].end(), search) != hash_table[tableindex].end()){
+                            cout << "Key found at index " << tableindex << endl;
+                        }
+                        else {
+                            cout << "Key not found.\n";
+                        }
+                    }
                     break;
                 case 3:
                     //add a key
@@ -73,7 +84,7 @@ int main() {
                 case 6:
                     //quit
                     cout << "Exiting...\n";
-                    return; 
+                    return 0; 
                 default:
                     cout << "Error. Not a valid entry.\n";
                     break;
